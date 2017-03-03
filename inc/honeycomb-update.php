@@ -29,8 +29,8 @@ class honeycomb_update
 		$this->settings = array(
 			'version'	=>	'',
 			'remote'	=>	'http://wp-property-hive.com/theme-store/honeycomb-a4tyytf87/update-info.php',
-			'basename'	=>	str_replace('-update.php', '', __FILE__),
-			'slug'		=>	str_replace('-update.php', '', __FILE__),
+			'basename'	=>	'honeycomb',
+			'slug'		=>	'honeycomb',
 		);
 
 		// filters
@@ -89,25 +89,22 @@ class honeycomb_update
         {
 	        return $transient;
         }
-        
+
         // compare versions
         if( version_compare($info->version, $this->get_version(), '<=') )
         {
         	return $transient;
         }
 
-        
         // create new object for update
         $obj = new stdClass();
         $obj->slug = $info->slug;
         $obj->new_version = $info->version;
         $obj->url = $info->homepage;
         $obj->package = $info->download_link;
-        
-        
+
         // add to transient
-        $transient->response[ $this->settings['basename'] ] = $obj;
-        
+        $transient->response[ $this->settings['basename'] ] = (array) $obj;
         
         return $transient;
 	}
@@ -157,7 +154,7 @@ class honeycomb_update
     	// populate only once
     	if( !$this->settings['version'] )
     	{
-	    	$theme_data = wp_get_theme( str_replace('-update.php', '.php', __FILE__) );
+	    	$theme_data = wp_get_theme( 'honeycomb' );
 	    	if ( $theme_data->exists() )
 	    	{
 		    	$this->settings['version'] = $theme_data->get( 'Version' );
