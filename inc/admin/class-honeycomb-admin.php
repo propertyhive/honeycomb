@@ -61,18 +61,10 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 	            'desc_tip' => false,
 	            'options' => array(
 	            	'' => __( 'No Banner', 'honeycomb' ),
+	            	'map' => __( 'Map', 'honeycomb' ) . ' - ' . __( 'Requires the Property Hive Map Search add on', 'honeycomb' ),
+	            	'revslider' => __( 'Revolution Slider', 'honeycomb' ) . ' - ' . __( 'Requires the Revolution Slider plugin', 'honeycomb' ),
 	            )
 	        );
-
-			if ( class_exists( 'PH_Map_Search' ) )
-			{
-				$args['options']['map'] = __( 'Map', 'honeycomb' );
-			}
-
-			if ( class_exists( 'RevSlider' ) ) 
-			{
-				$args['options']['revslider'] = __( 'Revolution Slider', 'honeycomb' );
-			}
 
 	        propertyhive_wp_radio( $args );
 
