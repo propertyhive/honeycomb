@@ -14,6 +14,11 @@ if ( ! function_exists( 'honeycomb_page_banner' ) ) {
 	function honeycomb_page_banner() {
 		global $post;
 
+		if ( !isset($post->ID) )
+		{
+			return false;
+		}
+
 		$banner_type = get_post_meta( $post->ID, '_banner_type', TRUE );
 
 		switch ( $banner_type )
