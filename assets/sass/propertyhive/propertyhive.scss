@@ -626,24 +626,6 @@ p.no-comments {
 		}
 	}
 
-	// Full width single property
-	.honeycomb-full-width-content.single-property {
-		div.property {
-			.images {
-				@include span(4 of 12);
-			}
-
-			.summary {
-				@include span(last 8 of 12);
-				margin-bottom: ms(6);
-			}
-
-			.propertyhive-tabs {
-				clear: both;
-			}
-		}
-	}
-
 	.propertyhive-result-count {
 		@include span(4 of 12);
 		margin-bottom: ms(2);
