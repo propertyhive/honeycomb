@@ -139,9 +139,14 @@
 			white-space: nowrap;
 		}
 		select,
-		input[type='text'] {
+		input[type='text'],
+		input[type='email'],
+		input[type='number'],
+		input[type='date'] {
+			display: block;
 			width: 100%;
-			padding: ms(-2) 0.3em;
+			height: 44px;
+			padding: 0 0.3em;
 		}
 	}
 
@@ -297,6 +302,20 @@ ul.properties {
 
 	.pp_inline {
 		padding: ms(0);
+
+		.alert {
+			padding: ms(0);
+			margin-bottom: ms(0);
+			color: #FFF;
+
+			&.alert-success {
+				background: #090;
+			}
+
+			&.alert-danger {
+				background: #900;
+			}
+		}
 
 		label {
 			@include span(4 of 12);
