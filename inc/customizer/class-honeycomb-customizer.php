@@ -117,8 +117,8 @@ if ( ! class_exists( 'Honeycomb_Customizer' ) ) :
 			add_theme_support( 'custom-header', apply_filters( 'honeycomb_custom_header_args', array(
 				'default-image' => '',
 				'header-text'   => false,
-				'width'         => 1950,
-				'height'        => 500,
+				'width'         => 2000,
+				'height'        => 200,
 				'flex-width'    => true,
 				'flex-height'   => true,
 			) ) );
