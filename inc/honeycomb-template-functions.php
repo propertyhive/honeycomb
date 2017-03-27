@@ -19,7 +19,13 @@ if ( ! function_exists( 'honeycomb_page_banner' ) ) {
 			return false;
 		}
 
-		$banner_type = get_post_meta( $post->ID, '_banner_type', TRUE );
+		$post_id = $post->ID;
+		if ( is_post_type_archive('property') )
+		{
+			$post_id = ph_get_page_id( 'search_results' );
+		}
+
+		$banner_type = get_post_meta( $post_id, '_banner_type', TRUE );
 
 		switch ( $banner_type )
 		{
@@ -39,7 +45,7 @@ if ( ! function_exists( 'honeycomb_page_banner' ) ) {
 			{
 				if ( class_exists( 'RevSlider' ) ) 
 				{
-					$rev_slider = esc_html( get_post_meta( $post->ID, '_banner_rev_slider', TRUE ) ); 
+					$rev_slider = esc_html( get_post_meta( $post_id, '_banner_rev_slider', TRUE ) ); 
 					putRevSlider($rev_slider);
 				}
 				else
