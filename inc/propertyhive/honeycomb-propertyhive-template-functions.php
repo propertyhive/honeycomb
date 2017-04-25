@@ -34,7 +34,24 @@ if ( ! function_exists( 'honeycomb_after_content' ) ) {
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
-		<?php do_action( 'honeycomb_sidebar' );
+		<?php 
+		$do_sidebar = true;
+
+		if ( is_post_type_archive('property') )
+		{
+			$search_results_page_id = ph_get_page_id( 'search_results' );
+			$template = get_page_template_slug( $search_results_page_id );
+			
+			if ( $template == 'template-fullwidth.php' )
+			{
+				$do_sidebar = false;
+			}
+		}
+
+		if ($do_sidebar)
+		{
+			do_action( 'honeycomb_sidebar' );
+		}
 	}
 }
 

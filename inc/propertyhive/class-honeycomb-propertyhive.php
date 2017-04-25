@@ -100,6 +100,18 @@ if ( ! class_exists( 'Honeycomb_Propertyhive' ) ) :
 				$classes[] = 'propertyhive-active';
 			}
 
+			// Set template name if template selected on search results page
+			if ( is_post_type_archive('property') )
+			{
+				$search_results_page_id = ph_get_page_id( 'search_results' );
+				$template = get_page_template_slug( $search_results_page_id );
+				
+				if ( $template == 'template-fullwidth.php' )
+				{
+					$classes[] = 'page-template-template-fullwidth-php';
+				}
+			}
+
 			return $classes;
 		}
 
