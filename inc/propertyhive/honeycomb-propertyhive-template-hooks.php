@@ -16,9 +16,6 @@
  */
 remove_action( 'propertyhive_before_main_content', 'propertyhive_output_content_wrapper',     10 );
 remove_action( 'propertyhive_after_main_content',  'propertyhive_output_content_wrapper_end', 10 );
-remove_action( 'propertyhive_sidebar',             'propertyhive_get_sidebar',                10 );
-remove_action( 'propertyhive_before_shop_loop',    'propertyhive_result_count',               20 );
-remove_action( 'propertyhive_before_shop_loop',    'propertyhive_catalog_ordering',           30 );
 add_action( 'propertyhive_before_main_content',    'honeycomb_before_content',              10 );
 add_action( 'propertyhive_after_main_content',     'honeycomb_after_content',               10 );
 
