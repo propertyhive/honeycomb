@@ -28,6 +28,112 @@
 	}
 }
 
+/*
+ * Property Hive Forms
+ */
+.propertyhive-form {
+	
+	.control {
+		@include clearfix;
+		margin-bottom: 1rem;
+
+		label {
+			display: inline-block;
+			padding-right: 15px;
+			padding-top: calc(.5rem - 1px * 2);
+			padding-bottom: calc(.5rem - 1px * 2);
+
+			&:first-child {
+				width: 33%;
+			}
+		}
+
+		input[type='text'],
+		input[type='password'],
+		input[type='email'],
+		input[type='number'],
+		textarea,
+		select {
+			width: 66%;
+		}
+
+		select {
+			padding: ms(-2);
+			color: $color_body;
+			outline: none;
+			border-radius: 2px;
+			box-sizing: border-box;
+			font-weight: normal;
+			box-shadow:
+				inset 0 1px 1px rgba(0,0,0,0.125);
+		}
+	}
+}
+
+/*
+ * My Account Area
+ */
+.propertyhive-my-account {
+	
+	.my-account-navigation {
+		float: none;
+		width: 100%;
+		margin-bottom: ms(2);
+
+		ul {
+			list-style-none: none;
+			margin: 0;
+			padding: 0;
+
+			li { 
+				display: inline-block;
+				margin-right: 2px;
+
+				> a {
+					display: block;
+					padding: ms(-2) ms(1.5);
+					background: #EEE;
+					color: $color_body;
+				}
+
+				&.active {
+					> a {
+						color: #FFF;
+					}
+
+				}
+			}
+		}
+	}
+
+	.my-account-sections {
+		float: none;
+		width: 100%;
+	}
+
+}
+
+@media (max-width: $handheld) {
+
+	.propertyhive-my-account {
+	
+		.my-account-navigation {
+
+			ul {
+
+				li { 
+					display: block;
+					margin-right: 0;
+					margin-bottom: 2px;
+					text-align: center;
+				}
+			}
+		}
+
+	}
+
+}
+
 /**
  * Handheld footer bar
  */
@@ -303,20 +409,6 @@ ul.properties {
 	.pp_inline {
 		padding: ms(0);
 
-		.alert {
-			padding: ms(0);
-			margin-bottom: ms(0);
-			color: #FFF;
-
-			&.alert-success {
-				background: #090;
-			}
-
-			&.alert-danger {
-				background: #900;
-			}
-		}
-
 		form {
 			margin: 0;
 		}
@@ -336,6 +428,20 @@ ul.properties {
 				@include span(last 8 of 12);
 			}
 		}
+	}
+}
+
+.alert {
+	padding: ms(0);
+	margin-bottom: ms(0);
+	color: #FFF;
+
+	&.alert-success {
+		background: #090;
+	}
+
+	&.alert-danger {
+		background: #900;
 	}
 }
 

@@ -573,6 +573,10 @@ if ( ! class_exists( 'Honeycomb_Customizer' ) ) :
 				color: ' . $honeycomb_theme_mods['accent_color'] . ';
 			}
 
+			.propertyhive-my-account .my-account-navigation ul li.active a {
+				background: ' . $honeycomb_theme_mods['accent_color'] . ';
+			}
+
 			a:focus,
 			.button:focus,
 			.button.alt:focus,
