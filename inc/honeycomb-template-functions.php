@@ -33,7 +33,29 @@ if ( ! function_exists( 'honeycomb_page_banner' ) ) {
 			{
 				if ( class_exists( 'PH_Map_Search' ) )
 				{
-					echo do_shortcode('[propertyhive_map_search scrollwheel="false"]');
+					$query = '';
+
+					if ( is_post_type_archive() )
+					{
+						global $wp_query;
+
+				        $wp_query->set( 'paged', 1 );
+				        $wp_query->set( 'nopaging', true );
+
+				        $query = $wp_query->request;
+
+				        // Remove limit
+				        $last_limit_pos = strrpos(strtolower($query), "limit");
+				        if ($last_limit_pos !== FALSE)
+				        {
+				            // We found a limit
+				            $query = substr($query, 0, $last_limit_pos - 1); // -1 because strrpos return starts at zero
+				        }
+
+				        $query = base64_encode($query);
+					}
+
+					echo do_shortcode('[propertyhive_map_search scrollwheel="false" query="' . $query . '"]');
 				}
 				else
 				{
