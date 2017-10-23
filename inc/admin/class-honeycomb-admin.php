@@ -24,6 +24,8 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 		 */
 		public function __construct() {
 			
+			add_action( 'admin_notices', array( $this, 'honeycomb_error_notices') );
+
 			add_action( 'add_meta_boxes', array( $this, 'honeycomb_register_page_meta_boxes' ) );
 			add_action( 'save_post', array( $this, 'honeycomb_save_meta_boxes' ), 1, 2 );
 
@@ -31,20 +33,38 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 
 		}
 
+		/**
+	     * Output error message if core Property Hive plugin isn't active
+	     */
+	    public function honeycomb_error_notices() 
+	    {
+	        if (!is_plugin_active('propertyhive/propertyhive.php'))
+	        {
+	            $message = __( "The Property Hive plugin must be installed and activated before you can use the Honeycomb theme", 'propertyhive' );
+	            echo"<div class=\"error\"> <p>$message</p></div>";
+	        }
+	    }
+
 		public function admin_styles()
 		{
-			$screen = get_current_screen();
+			if (is_plugin_active('propertyhive/propertyhive.php'))
+       		{
+				$screen = get_current_screen();
 
-			if ( $screen->id == 'page' )
-			{
-				// Admin styles for PH pages only
-	            wp_enqueue_style( 'propertyhive_admin_styles', PH()->plugin_url() . '/assets/css/admin.css', array(), PH_VERSION );
-	        }
+				if ( $screen->id == 'page' )
+				{
+					// Admin styles for PH pages only
+		            wp_enqueue_style( 'propertyhive_admin_styles', PH()->plugin_url() . '/assets/css/admin.css', array(), PH_VERSION );
+		        }
+		    }
 		}
 
 		public function honeycomb_register_page_meta_boxes()
 		{
-			add_meta_box( 'honeycomb-page-banner', __( 'Page Banner', 'honeycomb' ), array( $this, 'honeycomb_display_page_banner_meta_box' ), 'page' );
+			if (is_plugin_active('propertyhive/propertyhive.php'))
+       		{
+				add_meta_box( 'honeycomb-page-banner', __( 'Page Banner', 'honeycomb' ), array( $this, 'honeycomb_display_page_banner_meta_box' ), 'page' );
+			}
 		}
 
 		public function honeycomb_display_page_banner_meta_box()
@@ -89,36 +109,39 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 
 		public function honeycomb_save_meta_boxes( $post_id, $post )
 		{
-			// $post_id and $post are required
-			if ( empty( $post_id ) || empty( $post ) ) {
-				return;
-			}
+			if (is_plugin_active('propertyhive/propertyhive.php'))
+       		{
+				// $post_id and $post are required
+				if ( empty( $post_id ) || empty( $post ) ) {
+					return;
+				}
 
-			// Dont' save meta boxes for revisions or autosaves
-			if ( defined( 'DOING_AUTOSAVE' ) || is_int( wp_is_post_revision( $post ) ) || is_int( wp_is_post_autosave( $post ) ) ) {
-				return;
-			}
+				// Dont' save meta boxes for revisions or autosaves
+				if ( defined( 'DOING_AUTOSAVE' ) || is_int( wp_is_post_revision( $post ) ) || is_int( wp_is_post_autosave( $post ) ) ) {
+					return;
+				}
 
-			// Check the nonce
-			if ( empty( $_POST['propertyhive_meta_nonce'] ) || ! wp_verify_nonce( $_POST['propertyhive_meta_nonce'], 'propertyhive_save_page_data' ) ) {
-				return;
-			}
-	        
-			// Check the post being saved == the $post_id to prevent triggering this call for other save_post events
-			if ( empty( $_POST['post_ID'] ) || $_POST['post_ID'] != $post_id ) {
-				return;
-			}
+				// Check the nonce
+				if ( empty( $_POST['propertyhive_meta_nonce'] ) || ! wp_verify_nonce( $_POST['propertyhive_meta_nonce'], 'propertyhive_save_page_data' ) ) {
+					return;
+				}
+		        
+				// Check the post being saved == the $post_id to prevent triggering this call for other save_post events
+				if ( empty( $_POST['post_ID'] ) || $_POST['post_ID'] != $post_id ) {
+					return;
+				}
 
-			// Check user has permission to edit
-			if ( ! current_user_can( 'edit_post', $post_id ) ) {
-				return;
-			}
+				// Check user has permission to edit
+				if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					return;
+				}
 
-			update_post_meta( $post_id, '_banner_type', $_POST['_banner_type'] );
+				update_post_meta( $post_id, '_banner_type', $_POST['_banner_type'] );
 
-			if ( class_exists( 'RevSlider' ) ) 
-			{
-				update_post_meta( $post_id, '_banner_rev_slider', $_POST['_banner_rev_slider'] );
+				if ( class_exists( 'RevSlider' ) ) 
+				{
+					update_post_meta( $post_id, '_banner_rev_slider', $_POST['_banner_rev_slider'] );
+				}
 			}
 		}
 
