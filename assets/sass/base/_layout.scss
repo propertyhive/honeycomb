@@ -59,6 +59,12 @@
 		}
 	}
 
+	.featured-image-page-banner {
+		background: no-repeat center center;
+		background-size: cover;
+		height: 250px;
+	}
+
 	.col-full {
 		@include clearfix;
 		@include container($container-width);

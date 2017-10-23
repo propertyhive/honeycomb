@@ -63,6 +63,7 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 	            	'' => __( 'No Banner', 'honeycomb' ),
 	            	'map' => __( 'Map', 'honeycomb' ) . ' - ' . __( 'Requires the Property Hive Map Search add on', 'honeycomb' ),
 	            	'revslider' => __( 'Revolution Slider', 'honeycomb' ) . ' - ' . __( 'Requires the Revolution Slider plugin', 'honeycomb' ),
+	            	'featured' => __( 'Use Featured Image', 'honeycomb' ),
 	            )
 	        );
 

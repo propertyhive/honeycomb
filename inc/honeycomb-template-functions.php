@@ -76,6 +76,15 @@ if ( ! function_exists( 'honeycomb_page_banner' ) ) {
 				}
 				break;
 			}
+			case "featured":
+			{
+				if ( has_post_thumbnail($post_id) ) 
+				{
+					$url = get_the_post_thumbnail_url($post_id, 'full');
+					echo '<div class="featured-image-page-banner" style="background-image:url(\'' . $url . '\');"></div>';
+				}
+				break;
+			}
 		}
 	}
 }
@@ -365,10 +374,22 @@ if ( ! function_exists( 'honeycomb_page_header' ) ) {
 	 * @since 1.0.0
 	 */
 	function honeycomb_page_header() {
+		global $post;
+
+		$post_id = $post->ID;
+		if ( is_post_type_archive('property') )
+		{
+			$post_id = ph_get_page_id( 'search_results' );
+		}
+
+		$banner_type = get_post_meta( $post_id, '_banner_type', TRUE );
+
+		$show_post_thumbnail = true;
+		if ( $banner_type == 'featured' ) { $show_post_thumbnail = false; } // don't show post thumbnail if it's already been used as the page banner
 		?>
 		<header class="entry-header">
 			<?php
-			honeycomb_post_thumbnail( 'full' );
+			if ( $show_post_thumbnail ) honeycomb_post_thumbnail( 'full' );
 			the_title( '<h1 class="entry-title">', '</h1>' );
 			?>
 		</header><!-- .entry-header -->
