@@ -35,12 +35,9 @@ if ( ! function_exists( 'honeycomb_page_banner' ) ) {
 				{
 					$query = '';
 
-					if ( is_post_type_archive() )
+					if ( is_post_type_archive('property') )
 					{
 						global $wp_query;
-
-				        $wp_query->set( 'paged', 1 );
-				        $wp_query->set( 'nopaging', true );
 
 				        $query = $wp_query->request;
 
