@@ -337,11 +337,11 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "WooThemes"
+msgid "Property Hive"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://woocommerce.com/"
+msgid "https://wp-property-hive.com/"
 msgstr ""
 
 #. Template Name of the plugin/theme

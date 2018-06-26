@@ -2,7 +2,7 @@
 /**
  * Honeycomb Customizer Class
  *
- * @author   WooThemes
+ * @author   PropertyHive
  * @package  honeycomb
  * @since    2.0.0
  */
@@ -559,7 +559,7 @@ if ( ! class_exists( 'Honeycomb_Customizer' ) ) :
 			body,
 			.secondary-navigation a,
 			.onsale,
-			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+			.pagination .page-numbers li .page-numbers:not(.current), .propertyhive-pagination .page-numbers li .page-numbers:not(.current) {
 				color: ' . $honeycomb_theme_mods['text_color'] . ';
 			}
 
@@ -682,7 +682,7 @@ if ( ! class_exists( 'Honeycomb_Customizer' ) ) :
 				color: ' . $honeycomb_theme_mods['text_color'] . ';
 			}
 
-			.woocommerce-breadcrumb a,
+			.propertyhive-breadcrumb a,
 			.property_meta a {
 				color: ' . honeycomb_adjust_color_brightness( $honeycomb_theme_mods['text_color'], 50 ) . ';
 			}

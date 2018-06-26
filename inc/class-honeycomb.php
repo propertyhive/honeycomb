@@ -2,7 +2,7 @@
 /**
  * Honeycomb Class
  *
- * @author   WooThemes
+ * @author   PropertyHive
  * @since    2.0.0
  * @package  honeycomb
  */
