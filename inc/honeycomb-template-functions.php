@@ -206,7 +206,7 @@ if ( ! function_exists( 'honeycomb_credit' ) ) {
 		<div class="site-info">
 			<?php echo esc_html( apply_filters( 'honeycomb_copyright_text', $content = '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
 			<?php if ( apply_filters( 'honeycomb_credit_link', true ) ) { ?>
-			<br /> <?php printf( esc_attr__( '%1$s powered by %2$s.', 'honeycomb' ), 'Honeycomb', '<a href="https://wp-property-hive.com" title="Property Hive - The Leading WordPress Platform For Estate Agency Websites" rel="author">Property Hive</a>' ); ?>
+			<br /> <?php echo __(sprintf( esc_attr__( '%1$s powered by %2$s.', 'honeycomb' ), 'Honeycomb', '<a href="https://wp-property-hive.com" title="Property Hive - The Leading WordPress Platform For Estate Agency Websites" rel="author">Property Hive</a>' ), 'propertyhive'); ?>
 			<?php } ?>
 		</div><!-- .site-info -->
 		<?php
