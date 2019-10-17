@@ -540,6 +540,67 @@ p.no-comments {
 	}
 }
 
+.propertyhive-views { 
+	margin-bottom: ms(2);
+
+	ul { 
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+
+		li { 
+			display: inline-block;
+			margin: 0 ms(-6);
+			background-color: lighten($color_body, 30%);
+
+			&.active,
+			&:hover {
+				background-color: $color_body;
+			}
+
+			&.list-view {
+				a {
+					&:after {
+						@include fa-icon();
+						content: "\f0c9";
+					}
+				}			
+			}
+
+			&.map-view {
+				a {
+					&:after {
+						@include fa-icon();
+						content: "\f041";
+					}
+				}			
+			}
+
+
+			a {
+				display: block;
+				position: relative;
+				padding: 0;
+				height: 40px;
+				width: 40px;
+				font-size: 0;
+				
+				&:after {
+					position: relative;
+				    top: 7px;
+				    right: 0;
+				    width: 100%;
+				    text-align: center;
+				    height: 100%;
+				    color: #fff;
+				    font-size: 24px !important;
+				}
+			}
+		}
+	}
+}
+
 @include susy-media($desktop) {
 
 	/**
@@ -741,6 +802,10 @@ p.no-comments {
 		}
 	}*/
 
+	.propertyhive-views { 
+		@include span(4 of 12);
+	}
+
 	/**
 	 * Single property page
 	 */
@@ -759,68 +824,6 @@ p.no-comments {
 	.propertyhive-result-count {
 		@include span(4 of 12);
 		margin-bottom: ms(2);
-	}
-
-	.propertyhive-views {
-		@include span(4 of 12);
-		margin-bottom: ms(2);
-
-		ul { 
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			text-align: center;
-
-			li { 
-				display: inline-block;
-				margin: 0 ms(-6);
-				background-color: lighten($color_body, 30%);
-
-				&.active,
-				&:hover {
-					background-color: $color_body;
-				}
-
-				&.list-view {
-					a {
-						&:after {
-							@include fa-icon();
-							content: "\f0c9";
-						}
-					}			
-				}
-
-				&.map-view {
-					a {
-						&:after {
-							@include fa-icon();
-							content: "\f041";
-						}
-					}			
-				}
-
-
-				a {
-					display: block;
-					position: relative;
-					padding: 0;
-					height: 40px;
-					width: 40px;
-					font-size: 0;
-					
-					&:after {
-						position: relative;
-					    top: 7px;
-					    right: 0;
-					    width: 100%;
-					    text-align: center;
-					    height: 100%;
-					    color: #fff;
-					    font-size: 24px !important;
-					}
-				}
-			}
-		}
 	}
 
 	.propertyhive-ordering {
