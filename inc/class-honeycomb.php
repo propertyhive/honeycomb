@@ -79,6 +79,7 @@ if ( ! class_exists( 'Honeycomb' ) ) :
 				'height'      => 110,
 				'width'       => 470,
 				'flex-width'  => true,
+				'flex-height' => true,
 			) );
 
 			// This theme uses wp_nav_menu() in two locations.
