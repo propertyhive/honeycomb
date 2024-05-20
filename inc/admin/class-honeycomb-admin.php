@@ -38,6 +38,10 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 	     */
 	    public function honeycomb_error_notices() 
 	    {
+	    	if ( ! function_exists( 'is_plugin_active' ) ) {
+			    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			}
+
 	        if (!is_plugin_active('propertyhive/propertyhive.php'))
 	        {
 	            $message = __( "The Property Hive plugin must be installed and activated before you can use the Honeycomb theme", 'propertyhive' );
@@ -47,6 +51,10 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 
 		public function admin_styles()
 		{
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+			    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			}
+
 			if (is_plugin_active('propertyhive/propertyhive.php'))
        		{
 				$screen = get_current_screen();
@@ -61,6 +69,10 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 
 		public function honeycomb_register_page_meta_boxes()
 		{
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+			    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			}
+
 			if (is_plugin_active('propertyhive/propertyhive.php'))
        		{
 				add_meta_box( 'honeycomb-page-banner', __( 'Page Banner', 'honeycomb' ), array( $this, 'honeycomb_display_page_banner_meta_box' ), 'page' );
@@ -109,6 +121,10 @@ if ( ! class_exists( 'Honeycomb_Admin' ) ) :
 
 		public function honeycomb_save_meta_boxes( $post_id, $post )
 		{
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+			    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			}
+
 			if (is_plugin_active('propertyhive/propertyhive.php'))
        		{
 				// $post_id and $post are required
