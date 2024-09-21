@@ -769,16 +769,18 @@ if ( ! function_exists( 'honeycomb_init_structured_data' ) ) {
 				'@id'                   => get_the_permalink(),
 			);
 
-			$json['publisher']        = array(
-				'@type'                 => 'organization',
-				'name'                  => get_bloginfo( 'name' ),
-				'logo'                  => array(
-					'@type'               => 'ImageObject',
-					'url'                 => $logo[0],
-					'width'               => $logo[1],
-					'height'              => $logo[2],
-				),
-			);
+			if(isset($logo) && (gettype($logo) == 'array')) {
+				$json['publisher']        = array(
+					'@type'                 => 'organization',
+					'name'                  => get_bloginfo( 'name' ),
+					'logo'                  => array(
+						'@type'               => 'ImageObject',
+						'url'                 => $logo[0],
+						'width'               => $logo[1],
+						'height'              => $logo[2],
+					),
+				);
+			}
 
 			$json['author']           = array(
 				'@type'                 => 'person',
