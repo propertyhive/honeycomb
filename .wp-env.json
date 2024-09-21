@@ -1,0 +1,7 @@
+{
+    "plugins": [
+        "https://downloads.wordpress.org/plugin/query-monitor.3.16.4.zip",
+        "https://downloads.wordpress.org/plugin/propertyhive.2.0.20.zip"
+    ],
+    "themes": [ "./" ]
+}
