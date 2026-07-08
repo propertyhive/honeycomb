@@ -205,18 +205,24 @@ if ( ! class_exists( 'Honeycomb' ) ) :
 			/**
 			 * Fonts
 			 */
-			$google_fonts = apply_filters( 'honeycomb_google_font_families', array(
+			$default_google_fonts = array(
 				'source-sans-pro' => 'Source+Sans+Pro:400,300,300italic,400italic,700,900',
-			) );
-
-			$query_args = array(
-				'family' => implode( '|', $google_fonts ),
-				'subset' => urlencode( 'latin,latin-ext' ),
 			);
 
-			$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+			$google_fonts = apply_filters( 'honeycomb_google_font_families', $default_google_fonts );
 
-			wp_enqueue_style( 'honeycomb-fonts', $fonts_url, array(), null );
+			if ( $google_fonts === $default_google_fonts ) {
+				wp_enqueue_style( 'honeycomb-fonts', get_template_directory_uri() . '/assets/fonts/source-sans-pro/source-sans-pro.css', array(), $honeycomb_version );
+			} elseif ( ! empty( $google_fonts ) ) {
+				$query_args = array(
+					'family' => implode( '|', $google_fonts ),
+					'subset' => urlencode( 'latin,latin-ext' ),
+				);
+
+				$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+
+				wp_enqueue_style( 'honeycomb-fonts', $fonts_url, array(), null );
+			}
 
 			/**
 			 * Scripts
@@ -304,7 +310,9 @@ if ( ! class_exists( 'Honeycomb' ) ) :
 		 * Add styles for embeds
 		 */
 		public function print_embed_styles() {
-			wp_enqueue_style( 'source-sans-pro', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,700,900' );
+			global $honeycomb_version;
+
+			wp_enqueue_style( 'source-sans-pro', get_template_directory_uri() . '/assets/fonts/source-sans-pro/source-sans-pro.css', array(), $honeycomb_version );
 			$accent_color     = get_theme_mod( 'honeycomb_accent_color' );
 			$background_color = honeycomb_get_content_background_color();
 			?>
@@ -315,7 +323,7 @@ if ( ! class_exists( 'Honeycomb' ) ) :
 					border-radius: 3px !important;
 					font-family: "Source Sans Pro", "Open Sans", sans-serif !important;
 					-webkit-font-smoothing: antialiased;
-					background-color: <?php echo honeycomb_adjust_color_brightness( $background_color, -7 ); ?> !important;
+					background-color: <?php echo esc_attr( honeycomb_adjust_color_brightness( $background_color, -7 ) ); ?> !important;
 				}
 
 				.wp-embed .wp-embed-featured-image {
